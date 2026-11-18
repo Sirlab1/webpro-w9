@@ -1,165 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 9 Pro | khadka satkar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Week 9 Pro | Khadka Satkar</title>
+<meta name="description" content="Week 9 Pro: creating, managing and publishing a website with HTML, Git, GitHub and GitHub Pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #e6f5e2;
+    --card: rgba(247, 253, 245, .78);
+    --line: #b3d9ad;
+    --text: #12301c;
+    --muted: #3b5a44;
+    --green: #1f7a3e;
+    --green-dark: #14532d;
+    --teal: #0f766e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; }
+  body {
+    min-height: 100%;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    padding: max(1.5rem, env(safe-area-inset-top)) 1.25rem max(1.5rem, env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    position: relative;
+  }
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  /* Soft green orbs + dot grid */
+  .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .bg::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(31,122,62,.2) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .6; animation: drift 14s ease-in-out infinite alternate; }
+  .orb.a { width: 420px; height: 420px; background: #86efac; top: -120px; left: -100px; }
+  .orb.b { width: 380px; height: 380px; background: #bef264; bottom: -120px; right: -80px; animation-delay: -5s; opacity: .45; }
+  .orb.c { width: 260px; height: 260px; background: #5eead4; top: 45%; left: 60%; opacity: .35; animation-delay: -9s; }
+  @keyframes drift { to { transform: translate(40px, 30px) scale(1.12); } }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  .card {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 680px;
+    padding: 3rem 2.25rem 2rem;
+    text-align: center;
+    background: var(--card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    box-shadow: 0 30px 70px rgba(20, 83, 45, .18), inset 0 1px 0 rgba(255,255,255,.9);
+    animation: rise .8s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .card::before {
+    content: ""; position: absolute; top: 0; left: 12%; right: 12%; height: 3px;
+    background: linear-gradient(90deg, transparent, #4ade80, var(--green), var(--teal), transparent);
+    border-radius: 0 0 6px 6px;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px) scale(.98); } to { opacity: 1; transform: none; } }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #080d1c;
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-        }
+  .badge {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .45rem 1rem; border-radius: 999px;
+    background: #d3efcc;
+    border: 1px solid #8fce86;
+    color: var(--green-dark); font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+    margin-bottom: 1.5rem;
+  }
+  .badge i { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 0 rgba(22,163,74,.55); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(22,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
 
-        .card {
-            width: 100%;
-            max-width: 650px;
-            padding: 45px 35px;
-            text-align: center;
-            background: linear-gradient(145deg, #17213a, #10172a);
-            border: 1px solid #334467;
-            border-radius: 22px;
-            box-shadow: 0 20px 60px #00000055;
-            position: relative;
-            overflow: hidden;
-        }
+  h1 {
+    font-size: clamp(2.6rem, 9vw, 4.2rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -.035em;
+    margin-bottom: 1rem;
+    background: linear-gradient(100deg, #14532d 0%, #15803d 45%, #0f766e 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: shine 6s linear infinite;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 4px;
-            width: 100%;
-            background: linear-gradient(90deg, #a78bfa, #60a5fa);
-        }
+  .subtitle { color: var(--muted); font-size: 1.02rem; line-height: 1.75; max-width: 30rem; margin: 0 auto 2rem; }
 
-        .badge {
-            display: inline-block;
-            padding: 7px 16px;
-            border-radius: 30px;
-            background: #30245a;
-            border: 1px solid #7961c5;
-            color: #ddd6fe;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 22px;
-        }
+  .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin-bottom: 1.75rem; }
+  .steps li {
+    padding: .85rem .4rem; border-radius: 14px;
+    background: #ffffff; border: 1px solid var(--line);
+    font-size: .78rem; font-weight: 700; color: var(--text);
+    box-shadow: 0 4px 14px rgba(20, 83, 45, .06);
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .steps li:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 10px 22px rgba(20, 83, 45, .15); }
+  .steps span { display: block; font-size: 1.35rem; margin-bottom: .25rem; }
+  .steps small { display: block; font-weight: 400; color: var(--muted); font-size: .7rem; margin-top: .1rem; }
 
-        h1 {
-            font-size: clamp(2rem, 6vw, 2.8rem);
-            margin-bottom: 12px;
-            background: linear-gradient(100deg, #c4b5fd, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  .details {
+    text-align: left; margin-bottom: 1.75rem;
+    background: #ffffff; border: 1px solid var(--line);
+    border-radius: 16px; overflow: hidden;
+  }
+  .details dl { margin: 0; }
+  .row { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 1.25rem; font-size: .92rem; }
+  .row + .row { border-top: 1px solid var(--line); }
+  .row dt { color: var(--green); font-weight: 700; }
+  .row dd { color: var(--text); text-align: right; }
 
-        .subtitle {
-            color: #aab7cf;
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 28px;
-        }
+  .links { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
+  .links a {
+    text-decoration: none; color: var(--green-dark); font-weight: 700; font-size: .88rem;
+    padding: .8rem 1.4rem; border-radius: 12px;
+    background: #ffffff; border: 1px solid #8fce86;
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .links a.primary {
+    background: linear-gradient(110deg, #15803d, #0f766e);
+    color: #ffffff; border-color: transparent; box-shadow: 0 10px 26px rgba(21, 128, 61, .35);
+  }
+  .links a:hover, .links a:focus-visible { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(21, 128, 61, .3); }
+  .links a:not(.primary):hover { background: #eaf8e6; }
+  a:focus-visible { outline: 3px solid var(--green-dark); outline-offset: 3px; }
 
-        .details {
-            padding: 17px;
-            background: #0b1428;
-            border: 1px solid #293754;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            line-height: 2;
-            font-size: 14px;
-        }
+  footer { margin-top: 1.75rem; color: var(--muted); font-size: .78rem; font-family: "JetBrains Mono", ui-monospace, monospace; }
 
-        .details strong {
-            color: #c4b5fd;
-        }
-
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: white;
-            background: #293957;
-            border: 1px solid #496087;
-            padding: 12px 20px;
-            border-radius: 9px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-
-        .links a.primary {
-            background: linear-gradient(110deg, #7c3aed, #2563eb);
-            border-color: transparent;
-        }
-
-        .links a:hover,
-        .links a:focus {
-            transform: translateY(-3px);
-            filter: brightness(1.2);
-        }
-
-        footer {
-            margin-top: 28px;
-            color: #8291aa;
-            font-size: 12px;
-        }
-
-        @media (max-width: 480px) {
-            .card {
-                padding: 35px 20px;
-            }
-
-            .links {
-                flex-direction: column;
-            }
-        }
-    </style>
+  @media (max-width: 520px) {
+    .card { padding: 2.5rem 1.25rem 1.75rem; border-radius: 22px; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .links { flex-direction: column; }
+    .row { flex-direction: column; gap: .1rem; }
+    .row dd { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    h1 { background-position: 0 center; }
+  }
+</style>
 </head>
-
 <body>
+  <div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
 
-    <main class="card">
-        <div class="badge">WEB PROGRAMMING • WEEK 9</div>
+  <main class="card">
+    <div class="badge"><i aria-hidden="true"></i>WEB PROGRAMMING · WEEK 9</div>
 
-        <h1>Week 9 Pro</h1>
+    <h1>Week 9 Pro</h1>
 
-        <p class="subtitle">
-            Creating, managing and publishing a website using
-            HTML, Git, GitHub and GitHub Pages.
-        </p>
+    <p class="subtitle">Creating, managing and publishing a website using HTML, Git, GitHub and GitHub Pages.</p>
 
-        <div class="details">
-            <p><strong>Student:</strong> satkar khadka </p>
-            <p><strong>Date:</strong> November ,10 2026</p>
-            <p><strong>Course:</strong> Web Programming</p>
-        </div>
+    <ol class="steps" aria-label="Project workflow">
+      <li><span aria-hidden="true">📝</span>HTML<small>Build</small></li>
+      <li><span aria-hidden="true">🌿</span>Git<small>Commit</small></li>
+      <li><span aria-hidden="true">☁️</span>GitHub<small>Push</small></li>
+      <li><span aria-hidden="true">🚀</span>Pages<small>Publish</small></li>
+    </ol>
 
-        <footer>
-            Designed by satkar · 2026
-        </footer>
-    </main>
+    <div class="details">
+      <dl>
+        <div class="row"><dt>Student</dt><dd>Khadka Satkar</dd></div>
+        <div class="row"><dt>Date</dt><dd>November 10, 2026</dd></div>
+        <div class="row"><dt>Course</dt><dd>Web Programming</dd></div>
+      </dl>
+    </div>
 
+    <nav class="links" aria-label="Project links">
+      <a class="primary" href="https://github.com/Sirlab1/webpro-w9">View repository</a>
+      <a href="https://sirlab1.github.io/SATKAR..LAB/">Back to portfolio</a>
+    </nav>
+
+    <footer>Designed by Satkar · 2026</footer>
+  </main>
 </body>
 </html>
