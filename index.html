@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9 Pro | khadka satkar</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #080d1c;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 650px;
+            padding: 45px 35px;
+            text-align: center;
+            background: linear-gradient(145deg, #17213a, #10172a);
+            border: 1px solid #334467;
+            border-radius: 22px;
+            box-shadow: 0 20px 60px #00000055;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, #a78bfa, #60a5fa);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 30px;
+            background: #30245a;
+            border: 1px solid #7961c5;
+            color: #ddd6fe;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            margin-bottom: 12px;
+            background: linear-gradient(100deg, #c4b5fd, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #aab7cf;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .details {
+            padding: 17px;
+            background: #0b1428;
+            border: 1px solid #293754;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            line-height: 2;
+            font-size: 14px;
+        }
+
+        .details strong {
+            color: #c4b5fd;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white;
+            background: #293957;
+            border: 1px solid #496087;
+            padding: 12px 20px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .links a.primary {
+            background: linear-gradient(110deg, #7c3aed, #2563eb);
+            border-color: transparent;
+        }
+
+        .links a:hover,
+        .links a:focus {
+            transform: translateY(-3px);
+            filter: brightness(1.2);
+        }
+
+        footer {
+            margin-top: 28px;
+            color: #8291aa;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 35px 20px;
+            }
+
+            .links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="card">
+        <div class="badge">WEB PROGRAMMING • WEEK 9</div>
+
+        <h1>Week 9 Pro</h1>
+
+        <p class="subtitle">
+            Creating, managing and publishing a website using
+            HTML, Git, GitHub and GitHub Pages.
+        </p>
+
+        <div class="details">
+            <p><strong>Student:</strong> satkar khadka </p>
+            <p><strong>Date:</strong> November ,10 2026</p>
+            <p><strong>Course:</strong> Web Programming</p>
+        </div>
+
+        <footer>
+            Designed by satkar · 2026
+        </footer>
+    </main>
+
+</body>
+</html>
